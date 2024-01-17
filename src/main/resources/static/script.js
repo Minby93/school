@@ -5,8 +5,15 @@ function submitForm() {
     var secondName = document.getElementById("secondName").value;
     var phoneNumber = document.getElementById("phoneNumber").value;
     var email = document.getElementById("email").value;
-    var userName = document.getElementById("userName").value;
+    var username = document.getElementById("username").value;
     var password = document.getElementById("password").value;
+    var role;
+    if (document.getElementById('role_student').checked) {
+        role = document.getElementById('role_student').value;
+    }
+    else{
+        role = document.getElementById('role_teacher').value;
+    }
 
     // Отправка данных в бэк
     fetch('/add', {
@@ -16,16 +23,18 @@ function submitForm() {
         },
         // Формирование json для отправки
         body: JSON.stringify({firstName: firstName, secondName: secondName, phoneNumber: phoneNumber,
-                                email: email, userName: userName, password: password})
+                                email: email, username: username, password: password, role: role})
     })
     .then(response => response.json())
     .then(data => {
         // Получение ответа от бэка
         console.log(data);
+
     })
     .catch(error => {
         console.error('Error:', error);
     });
+
 }
 //  Функция для получения всех записей из таблицы user (для отладки), в дальнейшем скорее всего уберу
 // Сделал её асинхронной для того, чтобы методы fetch() и .json() успели закончить свой жизненный цикл
@@ -41,8 +50,9 @@ async function getListOfUsers(){
                 <th>${users[key].secondName}</th>
                 <th>${users[key].phoneNumber}</th>
                 <th>${users[key].email}</th>
-                <th>${users[key].userName}</th>
+                <th>${users[key].username}</th>
                 <th>${users[key].password}</th>
+                <th>${users[key].role}</th>
              </tr>
         `;
     }
