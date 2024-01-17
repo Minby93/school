@@ -5,10 +5,7 @@ import com.example.demo.repository.UserRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -16,6 +13,8 @@ import java.util.List;
 public class BackendController {
     @Autowired
     private UserRepository userRepository;
+
+
   // Обработка POST запроса и сохранение объекта User в БД
     @PostMapping("/add")
     public void processFormData(@RequestBody String jsonUser) throws JsonProcessingException {
