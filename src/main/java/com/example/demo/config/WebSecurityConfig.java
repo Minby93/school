@@ -31,10 +31,7 @@ public class WebSecurityConfig {
                         .requestMatchers("/welcome").permitAll()
                         .anyRequest().authenticated()
                 )
-                .formLogin((form) -> form
-                        .loginPage("/login")
-                        .permitAll()
-                )
+                .formLogin(withDefaults())//надо импортнуть
                 .logout(LogoutConfigurer::permitAll);
 
         return http.build();
