@@ -1,5 +1,5 @@
 // Функция обработки и отправки POST запроса в бэк
-function submitForm() {
+function registrationForm() {
     // Считываемые поля
     var firstName = document.getElementById("firstName").value;
     var secondName = document.getElementById("secondName").value;
@@ -18,6 +18,7 @@ function submitForm() {
     // Отправка данных в бэк
     fetch('/add', {
         method: 'POST',
+        credentials: 'include',
         headers: {
             'Content-Type': 'application/json'
         },
@@ -36,27 +37,3 @@ function submitForm() {
     });
 
 }
-//  Функция для получения всех записей из таблицы user (для отладки), в дальнейшем скорее всего уберу
-// Сделал её асинхронной для того, чтобы методы fetch() и .json() успели закончить свой жизненный цикл
-async function getListOfUsers(){
-    let response = await fetch("/listOfUsers");
-    let users = await response.json();
-    let list = document.querySelector('.listOfUsers');
-    // Формирую новую строку для выводы записи в таблицу
-    for(key in users){
-        list.innerHTML += `
-            <tr>
-                <th>${users[key].firstName}</th>
-                <th>${users[key].secondName}</th>
-                <th>${users[key].phoneNumber}</th>
-                <th>${users[key].email}</th>
-                <th>${users[key].username}</th>
-                <th>${users[key].password}</th>
-                <th>${users[key].role}</th>
-             </tr>
-        `;
-    }
-
-}
-// Выполняю функция для отображения всех данных таблицы user (работает только при обновлении страницы, хз как исправить)
-getListOfUsers();
