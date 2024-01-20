@@ -5,6 +5,7 @@ import com.example.demo.repository.UserRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,12 +14,15 @@ import java.util.List;
 public class BackendController {
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
 
   // Обработка POST запроса и сохранение объекта User в БД
     @PostMapping("/add")
     public void processFormData(@RequestBody String jsonUser) throws JsonProcessingException {
         User user = jsonStringToUser(jsonUser);  // Получаю объект User из json
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         System.out.println(user);
         userRepository.save(user);
     }
