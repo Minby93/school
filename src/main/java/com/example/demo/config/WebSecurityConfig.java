@@ -24,6 +24,7 @@ public class WebSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(AbstractHttpConfigurer::disable)
+
                 .formLogin((form) -> form
                         .loginPage("/login")
                         .permitAll()
@@ -35,6 +36,7 @@ public class WebSecurityConfig {
                         .requestMatchers("/admin").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 );
+
 
         return http.build();
     }
