@@ -31,6 +31,17 @@ public class User {
     public User() {
     }
 
+    public User(User user) {
+        this.id = user.id;
+        this.firstName = user.firstName;
+        this.secondName = user.secondName;
+        this.email = user.email;
+        this.username = user.username;
+        this.phoneNumber = user.phoneNumber;
+        this.password = user.password;
+        this.role = user.role;
+    }
+
     public String getRole() {
         return role;
     }
