@@ -2,11 +2,13 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Онлайн курсы</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="/static/css/cardCourse.css">
 </head>
-<body>
+<body class="main_div w-100">
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark col-sm-12 col-md-12 col-lg-12">
     <img src="/static/img/HeHBwztNLTeyRCq2Ao2VCEmDnTHZMx6F7CEWahicFvuGqsorG2BJKMeCdwUaupLqL6rlH8iBAGx69rI7iEG9uAtU.jpg" height="50px" style="margin-right: 10px">
     <a class="navbar-brand" href="/">Школа</a>
@@ -25,17 +27,42 @@
             <li class="nav-item">
                 <a class="nav-link" href="/info">Справочник</a>
             </li>
-
         </ul>
     </div>
-    <div>
-        <a href="/logout" class="btn btn-outline-danger mx-4" id="logoutButton">Выход</a>
-    </div>
-    <div>
-        <a href="/login" class="btn btn-outline-success mx-4" id="loginButton">Войти</a>
-</div>
 </nav>
-Welcome
-<script src="/static/js/logout.js"></script>
+
+<div class="container w-75 container_div my-5 p-5">
+    <h1>Добро пожаловать на наш сайт с онлайн курсами!</h1>
+    <p>Здесь вы можете найти широкий выбор курсов по различным тематикам. Начните свое обучение прямо сейчас!</p>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="course-card">
+                <img src="https://pixelbox.ru/wp-content/uploads/2021/10/banner-twitch-anime-pixelbox.ru-10-scaled.jpg" alt="Course 1">
+                <h3>Курс по программированию</h3>
+                <p>Изучите основы программирования и разработки программных приложений.</p>
+                <a href="#" class="btn btn-primary">Подробнее</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="course-card">
+                <img src="/static/img/course2.jpg" alt="Course 2">
+                <h3>Курс по веб-дизайну</h3>
+                <p>Научитесь создавать красивые и удобные веб-сайты с нуля.</p>
+                <a href="#" class="btn btn-primary">Подробнее</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="course-card">
+                <img src="/static/img/course3.jpg" alt="Course 3">
+                <h3>Курс по фотографии</h3>
+                <p>Получите навыки профессиональной фотографии и ретуширования.</p>
+                <a href="#" class="btn btn-primary">Подробнее</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
 </body>
 </html>
