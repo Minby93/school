@@ -7,12 +7,12 @@ import jakarta.persistence.*;
 // а так как прямо такое название не записать использую запись в виде \"user\"
 public class User {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
     private String firstName;
     private String secondName;
     private String email;
-    private String username;
+    private String username; // логин
     private String phoneNumber;
     private String password;
     private String role;

@@ -14,11 +14,13 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
+@CrossOrigin("*")
 public class WebSecurityConfig {
 
     @Bean
@@ -29,10 +31,12 @@ public class WebSecurityConfig {
                 .formLogin((form) -> form
                         .loginPage("/login")
                         .permitAll()
+                        .defaultSuccessUrl("/profile")
                 )
+
                 .logout((logout) -> logout.permitAll())
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/", "/welcome",  "/static/js/**", "/add").permitAll()
+                        .requestMatchers("/", "/welcome",  "/static/js/**", "/add", "/static/img/**").permitAll()
                         .requestMatchers("/registration").anonymous()
                         .requestMatchers("/admin", "/listOfUsers"  ).hasAuthority("ADMIN")
                         .anyRequest().authenticated()
