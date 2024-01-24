@@ -35,9 +35,9 @@ public class WebSecurityConfig {
 
                 .logout((logout) -> logout.permitAll())
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/", "/welcome",  "/static/js/**", "/add", "/static/img/**", "/static/css/**", "/getProfile", "/listOfUsers", "/update").permitAll()
+                        .requestMatchers("/", "/welcome",  "/static/js/**", "/add", "/static/img/**", "/static/css/**", "/getProfile", "/courses" ).permitAll()
                         .requestMatchers("/registration").anonymous()
-                        .requestMatchers("/admin"  ).hasAuthority("ADMIN")
+                        .requestMatchers("/admin", "/listOfUsers"  ).hasAuthority("ADMIN")
                         .anyRequest().authenticated()
                 );
 
