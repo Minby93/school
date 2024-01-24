@@ -6,12 +6,15 @@ import com.example.demo.repository.UserRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class BackendController {
@@ -19,6 +22,20 @@ public class BackendController {
     private UserRepository userRepository;
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+   @PutMapping("/update")
+   public void updateUser(@RequestBody String jsonUser) throws JsonProcessingException{
+       User user = jsonStringToUser(jsonUser);
+       if (userRepository.findById(user.getId()).isPresent()){
+           User newUser = userRepository.findById(user.getId()).get();
+           newUser.setFirstName(user.getFirstName());
+           newUser.setSecondName(user.getSecondName());
+           newUser.setPhoneNumber(user.getPhoneNumber());
+           newUser.setEmail(user.getEmail());
+           newUser.setRole(user.getRole());
+           userRepository.save(newUser);
+       }
+   }
 
 
   // Обработка POST запроса и сохранение объекта User в БД
@@ -45,8 +62,11 @@ public class BackendController {
         } else {
              username = principal.toString();
         }
-        User user =  userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException(username + "not found"));
-        return userProfileToJson(user);
+        User user =  userRepository.findByUsername(username).orElse(null);
+        if (user != null) {
+            return userProfileToJson(user);
+        }
+        else return "null";
     }
 
     // Преобразование json в объект User
