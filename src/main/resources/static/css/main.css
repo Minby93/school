@@ -1,0 +1,10 @@
+.main_div {
+  background: rgb(194, 194, 194); /* Make it white if you need */
+
+}
+.container_div{
+  -webkit-box-shadow: 0px 0px 19px 5px rgba(34, 60, 80, 0.33);
+  -moz-box-shadow: 0px 0px 19px 5px rgba(34, 60, 80, 0.33);
+  box-shadow: 0px 0px 19px 5px rgba(34, 60, 80, 0.33);
+  background-color: white;
+}
