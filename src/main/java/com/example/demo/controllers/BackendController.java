@@ -2,19 +2,16 @@ package com.example.demo.controllers;
 
 import com.example.demo.config.MyUserDetails;
 import com.example.demo.domain.User;
-import com.example.demo.domain.UserProfile;
 import com.example.demo.repository.UserRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.annotation.CurrentSecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 public class BackendController {
@@ -49,8 +46,6 @@ public class BackendController {
              username = principal.toString();
         }
         User user =  userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException(username + "not found"));
-
-
         return userProfileToJson(user);
     }
 
