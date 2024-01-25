@@ -1,4 +1,4 @@
-document.getElementById('courseButton').addEventListener('click', function() {
+ function uploadFile(){
     const formData = new FormData();
     let file = document.getElementById('courseFile');
     formData.append('file', file.files[0]);
@@ -6,4 +6,5 @@ document.getElementById('courseButton').addEventListener('click', function() {
                 method: 'POST',
                 body: formData
             });
-});
+};
+

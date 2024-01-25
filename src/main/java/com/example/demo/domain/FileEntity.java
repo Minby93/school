@@ -26,9 +26,15 @@ public class FileEntity {
     @Lob
     private byte[] data;
 
-    /*@ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "user_course",
-            inverseJoinColumns = @JoinColumn(name = "file_id", referencedColumnName = "id"),
-            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"))
-    private Set<User> users = new HashSet<User>();*/
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User user;
+
+    @ManyToMany
+    @JoinTable(
+            name = "user_courses",
+            joinColumns = @JoinColumn(name = "file_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
+    Set<User> usersInCourse = new HashSet<>();
 }

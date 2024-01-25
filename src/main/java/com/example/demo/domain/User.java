@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name="\"user\"") // Использую аннотацию, чтобы записать таблицу с название user,
+@Table(name="usr") // Использую аннотацию, чтобы записать таблицу с название user,
 // а так как прямо такое название не записать использую запись в виде \"user\"
 public class User {
     @Id
@@ -19,19 +19,13 @@ public class User {
     private String phoneNumber;
     private String password;
     private String role;
-   /* @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "user_course",
-            joinColumns = @JoinColumn(name = "file_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"))
-    private Set<FileEntity> course = new HashSet<FileEntity>();
-
-    public Set<FileEntity> getCourse() {
-        return course;
-    }
-
-    public void setCourse(Set<FileEntity> course) {
-        this.course = course;
-    }*/
+    @ManyToMany
+    @JoinTable(
+            name = "user_courses",
+            inverseJoinColumns = @JoinColumn(name = "file_id"),
+            joinColumns = @JoinColumn(name = "user_id")
+    )
+    private Set<FileEntity> files = new HashSet<>();
 
     public User(Long id, String firstName, String secondName, String email, String username, String phoneNumber, String password, String role) {
         this.id = id;
@@ -132,5 +126,13 @@ public class User {
                 ", password='" + password + '\'' +
                 ", role='" + role + '\'' +
                 '}';
+    }
+
+    public Set<FileEntity> getFiles() {
+        return files;
+    }
+
+    public void setFiles(Set<FileEntity> files) {
+        this.files = files;
     }
 }

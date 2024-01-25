@@ -30,57 +30,23 @@
 
         </ul>
     </div>
+    <div>
+        <a href="/logout" class="btn btn-outline-danger mx-4" id="logoutButton">Выход</a>
+    </div>
+    <div>
+        <a href="/login" class="btn btn-outline-success mx-4" id="loginButton">Вход</a>
+    </div>
 </nav>
 <div class="container w-75 container_div my-5 p-5">
     <input type="text" class="form-control" id="searchInput" placeholder="Поиск курсов" aria-label="Поиск курсов">
-    <div class="row row-cols-1 row-cols-md-3 g-4 mt-3" id="courseCards">
-        <div class="col search-card" data-title="Название курса 1" data-description="Описание курса 1">
-            <div class="card">
-                <img src="https://pixelbox.ru/wp-content/uploads/2021/10/banner-twitch-anime-pixelbox.ru-10-scaled.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Название курса 1</h5>
-                    <p class="card-text">Описание курса 1</p>
-                    <a href="#" class="btn btn-primary">Подробнее</a>
-                </div>
-            </div>
-        </div>
-        <div class="col search-card" data-title="Название курса 2" data-description="Описание курса 2">
-            <div class="card">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Название курса 2</h5>
-                    <p class="card-text">Описание курса 2</p>
-                    <a href="#" class="btn btn-primary">Подробнее</a>
-                </div>
-            </div>
-        </div>
-        <div class="col search-card" data-title="Название курса 3" data-description="Описание курса 3">
-            <div class="card">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Название курса 3</h5>
-                    <p class="card-text">Описание курса 3</p>
-                    <a href="#" class="btn btn-primary">Подробнее</a>
-                </div>
-            </div>
-        </div>
+    <div class="row row-cols-1 row-cols-md-3 g-4 mt-3 courseCards">
+
+
     </div>
 </div>
 
-<script>
-    document.getElementById('searchInput').addEventListener('input', function() {
-        let searchValue = this.value.toLowerCase();
-        let cards = document.querySelectorAll('.search-card');
-        cards.forEach(function(card) {
-            let title = card.getAttribute('data-title').toLowerCase();
-            let description = card.getAttribute('data-description').toLowerCase();
-            if (title.includes(searchValue) || description.includes(searchValue)) {
-                card.style.display = 'block';
-            } else {
-                card.style.display = 'none';
-            }
-        });
-    });
-</script>
+<script src="/static/js/addCourse.js"></script>
+<script src="/static/js/getCourses.js"></script>
+<script src="/static/js/logout.js"></script>
 </body>
 </html>

@@ -37,7 +37,7 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers("/", "/welcome",  "/static/js/**", "/add", "/static/img/**",
                                 "/static/css/**", "/getProfile", "/courses",
-                                "/files/**")
+                                "/files/list", "/files/**")
                         .permitAll()
                         .requestMatchers("/registration").anonymous()
                         .requestMatchers("/admin", "/listOfUsers"  ).hasAuthority("ADMIN")

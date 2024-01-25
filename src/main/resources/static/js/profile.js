@@ -65,7 +65,7 @@ async function getProfile(){
         <form enctype="multipart/form-data" method="post">
                     <p>Загрузите ваши курсы: </p>
                     <input type="file" name="course" id="courseFile" multiple>
-                    <button type="button" value="Отправить" id="courseButton">Отправить</button>
+                    <button type="button" value="Отправить" id="courseButton" onclick="uploadFile();">Отправить</button>
                 </form>
         `;
     }
@@ -75,7 +75,7 @@ async function getProfile(){
         <form enctype="multipart/form-data" method="post">
                     <p>Загрузите ваши курсы: </p>
                     <input type="file" name="course" id="courseFile" multiple>
-                    <button type="button" value="Отправить" id="courseButton">Отправить</button>
+                    <button type="button" value="Отправить" id="courseButton" onclick="uploadFile();">Отправить</button>
                 </form>
         `;
     }
