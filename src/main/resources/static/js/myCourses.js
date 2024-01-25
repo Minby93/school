@@ -16,7 +16,8 @@ async function getMyCourses(){
             <div class="col search-card w-100" data-title="${courses[key].name}">
                                        <div class="card row bg-secondary">
                                            <div class="card-body row ">
-                                               <h5 class="card-title col-10">${name}</h5>
+                                               <h5 class="card-title col-7">${name}</h5>
+                                               <p class="card-description col-3">Вы создатель этого курса</p>
                                                <a class="btn btn-primary col" href="/files/${courses[key].id}">Скачать</a>
                                            </div>
                                        </div>

@@ -4,22 +4,55 @@ async function getCourses(){
 
      let show = await fetch('/getProfile');
      let user = await show.text();
+     let showProfile = await fetch('/getProfile');
+     let userProfile = await showProfile.json();
+
+     let id = userProfile.id;
+     let url = '/files/'+id+'/courses';
+     let responseCourses = await fetch(url);
+     let myCourses = await responseCourses.json();
+     let myCoursesId = [];
+     for(key in myCourses){
+        myCoursesId.push(myCourses[key].id);
+     }
+
      let name;
      let list = document.querySelector('.courseCards');
+
      if(user != "null"){
         for(course in courses){
-           name = courses[course].name.split('.')[0]
-           console.log(courses[course].id);
-           list.innerHTML += `
-               <div class="col search-card w-100" data-title="${name}">
-                           <div class="card row">
-                               <div class="card-body row">
-                                   <h5 class="card-title col-10">${name}</h5>
-                                   <a class="btn btn-primary col" href="/files/${courses[course].id}" onclick="addCourse(${courses[course].id});">Присоединиться</a>
-                               </div>
-                           </div>
-                       </div>
+           for(key in myCoursesId){
+            if(myCoursesId[key] == courses[course].id){
+                name = courses[course].name.split('.')[0]
+                console.log(courses[course].id);
+
+                list.innerHTML += `
+                    <div class="col search-card w-100" data-title="${name}">
+                                <div class="card row bg-success">
+                                    <div class="card-body row">
+                                        <h5 class="card-title col-10">${name}</h5>
+                                        <a class="btn btn-success col" disabled>Вы уже участвуете!</a>
+                                    </div>
+                                </div>
+                            </div>
            `;
+           }
+           else{
+                 name = courses[course].name.split('.')[0]
+                                console.log(courses[course].id);
+
+                                list.innerHTML += `
+                                    <div class="col search-card w-100" data-title="${name}">
+                                                <div class="card row">
+                                                    <div class="card-body row">
+                                                        <h5 class="card-title col-10">${name}</h5>
+                                                        <a class="btn btn-primary col" href="/files/${courses[course].id}" onclick="addCourse(${courses[course].id});">Присоединиться</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                           `;
+           }
+           }
         }
      }
      else{
