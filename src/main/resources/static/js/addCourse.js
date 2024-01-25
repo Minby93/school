@@ -1,3 +1,4 @@
+// Передача информации в бэк для добавления курса пользователю
 function addCourse(id){
 
     let url = '/course/add/' + id;

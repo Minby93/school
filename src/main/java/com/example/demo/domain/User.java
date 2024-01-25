@@ -6,8 +6,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name="usr") // Использую аннотацию, чтобы записать таблицу с название user,
-// а так как прямо такое название не записать использую запись в виде \"user\"
+@Table(name="usr") // Использую аннотацию, чтобы записать таблицу с название usr
+
 public class User {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)

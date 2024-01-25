@@ -82,7 +82,7 @@ public class FilesController {
                 .map(this::mapToFileResponse)
                 .collect(Collectors.toList());
     }
-
+    // Получение информации о владельцах курса
     @GetMapping("/{id}/mycourses")
     public List<FileResponse> getMyUpCourses(@PathVariable Long id){
         List<Long> coursesId = userRepository.findMyCoursesByUserId(id);
@@ -98,6 +98,7 @@ public class FilesController {
         return courses.stream().map(this::mapToFileResponse).collect(Collectors.toList());
     }
 
+    // преобразование Map в FileResponse
     private FileResponse mapToFileResponse(FileEntity fileEntity) {
         String downloadURL = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path("/files/")
@@ -114,6 +115,7 @@ public class FilesController {
         return fileResponse;
     }
 
+    // Получение курса
     @GetMapping("/{id}")
     public ResponseEntity<byte[]> getFile(@PathVariable String id) {
         Optional<FileEntity> fileEntityOptional = fileService.getFile(Long.valueOf(id));

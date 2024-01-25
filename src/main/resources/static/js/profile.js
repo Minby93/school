@@ -1,4 +1,5 @@
-    document.getElementById('editButton').addEventListener('click', async function() {
+// Динамическое изменение страницы профиля для редактирования
+document.getElementById('editButton').addEventListener('click', async function() {
     let response = await fetch("/getProfile");
     let user = await response.json();
     document.getElementById('profile').style.display = 'none';
@@ -14,7 +15,7 @@
     }
     else document.getElementById("studentRole").checked = true;
 });
-
+// Обработка изменения профиля
 document.getElementById('saveButton').addEventListener('click', function() {
 
     document.getElementById('profile').style.display = 'block';
@@ -24,7 +25,7 @@ document.getElementById('saveButton').addEventListener('click', function() {
     updateUser();
 
 });
-
+// Отправка данных на бэк для изменения профиля
 async function updateUser(){
     let response = await fetch("/getProfile");
     let user = await response.json();
@@ -52,7 +53,7 @@ async function updateUser(){
         });
     window.location.replace("/profile");
 }
-
+// Получение профиля
 async function getProfile(){
     let response = await fetch("/getProfile");
     let user = await response.json();
@@ -61,23 +62,17 @@ async function getProfile(){
     if(user.role == "ADMIN")
     {
         role = "Админ";
-        course.innerHTML += `
-        <form enctype="multipart/form-data" method="post">
+        course.innerHTML += `<form enctype="multipart/form-data" method="post">
                     <p>Загрузите ваши курсы: </p>
                     <input type="file" name="course" id="courseFile" multiple>
-                    <button type="button" value="Отправить" id="courseButton" onclick="uploadFile();">Отправить</button>
-                </form>
-        `;
+                    <button type="button" value="Отправить" id="courseButton" onclick="uploadFile();">Отправить</button></form> `;
     }
     else if(user.role == "TEACHER"){
         role = "Учитель";
-        course.innerHTML += `
-        <form enctype="multipart/form-data" method="post">
+        course.innerHTML += `<form enctype="multipart/form-data" method="post">
                     <p>Загрузите ваши курсы: </p>
                     <input type="file" name="course" id="courseFile" multiple>
-                    <button type="button" value="Отправить" id="courseButton" onclick="uploadFile();">Отправить</button>
-                </form>
-        `;
+                    <button type="button" value="Отправить" id="courseButton" onclick="uploadFile();">Отправить</button></form>`;
     }
     else role = "Ученик";
 

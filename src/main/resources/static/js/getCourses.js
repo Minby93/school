@@ -1,3 +1,4 @@
+// Динамическое отображаение курсов на странице
 async function getCourses(){
      let response = await fetch("/files/list");
      let courses = await response.json();
@@ -6,14 +7,16 @@ async function getCourses(){
      let user = await show.text();
      let showProfile = await fetch('/getProfile');
      let userProfile = await showProfile.json();
-
+     let myCoursesId = [];
+    if(user != "null"){
      let id = userProfile.id;
      let url = '/files/'+id+'/courses';
      let responseCourses = await fetch(url);
      let myCourses = await responseCourses.json();
-     let myCoursesId = [];
+
      for(key in myCourses){
         myCoursesId.push(myCourses[key].id);
+     }
      }
 
      let name;
@@ -72,6 +75,7 @@ async function getCourses(){
                 }
      }
 }
+// Функция поиска
 document.getElementById('searchInput').addEventListener('input', function() {
         let searchValue = this.value.toLowerCase();
         let cards = document.querySelectorAll('.search-card');

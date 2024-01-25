@@ -1,3 +1,4 @@
+ // Загрузка нового курса
  function uploadFile(){
     const formData = new FormData();
     let file = document.getElementById('courseFile');

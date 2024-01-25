@@ -24,7 +24,7 @@ public class FileService {
     public FileService(FileRepository fileRepository) {
         this.fileRepository = fileRepository;
     }
-
+    // Сохранение нового курса
     public void saveNew(MultipartFile file, User user) throws IOException {
         FileEntity fileEntity = new FileEntity();
         fileEntity.setName(StringUtils.cleanPath(file.getOriginalFilename()));
@@ -35,14 +35,6 @@ public class FileService {
         fileRepository.save(fileEntity);
     }
 
-    public void save(MultipartFile file) throws IOException {
-        FileEntity fileEntity = new FileEntity();
-        fileEntity.setName(StringUtils.cleanPath(file.getOriginalFilename()));
-        fileEntity.setContentType(file.getContentType());
-        fileEntity.setData(file.getBytes());
-        fileEntity.setSize(file.getSize());
-        fileRepository.save(fileEntity);
-    }
 
     public Optional<FileEntity> getFile(Long id) {
         return fileRepository.findById(String.valueOf(id));
