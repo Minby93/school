@@ -7,5 +7,6 @@
                 method: 'POST',
                 body: formData
             });
+     window.location.replace("/profile");
 };
 

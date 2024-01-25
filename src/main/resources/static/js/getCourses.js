@@ -23,12 +23,15 @@ async function getCourses(){
      let list = document.querySelector('.courseCards');
 
      if(user != "null"){
+        console.log(myCoursesId);
         for(course in courses){
            for(key in myCoursesId){
-            if(myCoursesId[key] == courses[course].id){
-                name = courses[course].name.split('.')[0]
-                console.log(courses[course].id);
+           console.log(courses[course].id + ' this');
+           console.log(key + ' my');
+           console.log(myCoursesId.length + ' length');
 
+            if(myCoursesId[key] == courses[course].id){
+                name = courses[course].name.split('.')[0];
                 list.innerHTML += `
                     <div class="col search-card w-100" data-title="${name}">
                                 <div class="card row bg-success">
@@ -39,10 +42,12 @@ async function getCourses(){
                                 </div>
                             </div>
            `;
+           break;
+
            }
            else{
-                 name = courses[course].name.split('.')[0]
-                                console.log(courses[course].id);
+                if (key == myCoursesId.length - 1){
+                 name = courses[course].name.split('.')[0];
 
                                 list.innerHTML += `
                                     <div class="col search-card w-100" data-title="${name}">
@@ -54,13 +59,15 @@ async function getCourses(){
                                                 </div>
                                             </div>
                            `;
+
+           }
            }
            }
         }
      }
      else{
         for(course in courses){
-                   name = courses[course].name.split('.')[0]
+                   name = courses[course].name.split('.')[0];
                    console.log(courses[course].id);
                    list.innerHTML += `
                        <div class="col search-card w-100" data-title="${name}">
