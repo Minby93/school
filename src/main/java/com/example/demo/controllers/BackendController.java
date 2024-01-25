@@ -2,18 +2,15 @@ package com.example.demo.controllers;
 
 import com.example.demo.config.MyUserDetails;
 import com.example.demo.domain.FileEntity;
-import com.example.demo.domain.FileResponse;
 import com.example.demo.domain.User;
 import com.example.demo.repository.FileRepository;
 import com.example.demo.repository.UserRepository;
-import com.example.demo.service.FileService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
@@ -28,7 +25,7 @@ public class BackendController {
     @Autowired
     private FileRepository fileRepository;
 
-
+    // Добавление курса пользователю
     @PutMapping("/course/add/{id}")
     public void addCourse(@PathVariable Long id) throws IOException {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -45,6 +42,7 @@ public class BackendController {
         file.setUsersInCourse(newSet);
         fileRepository.save(file);
     }
+    // Обновление информации о пользователе
     @PutMapping("/update")
     public void updateUser(@RequestBody String jsonUser) throws JsonProcessingException{
         User user = jsonStringToUser(jsonUser);
@@ -74,6 +72,7 @@ public class BackendController {
         return usersToJson(users);  // Возвращаю список объектов User в виде json
     }
 
+    // Получение пользователя, обработка и отправка для отображения ифнормации на профиле
     @GetMapping("/getProfile")
     public String profile() throws JsonProcessingException {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -102,6 +101,7 @@ public class BackendController {
         String jsonUsers = objectMapper.writeValueAsString(users);
         return jsonUsers;
     }
+    // Преобразование объекта User в json
     private String userProfileToJson(User user) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         user.setPassword(null);

@@ -12,4 +12,5 @@ public class FileResponse {
     private Long size;
     private String url;
     private String contentType;
+    private Long user_id;
 }

@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
-
+// Настройка своего UserDetails
 public class MyUserDetails implements UserDetails {
 
     private User user;

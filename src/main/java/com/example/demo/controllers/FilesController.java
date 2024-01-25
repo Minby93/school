@@ -34,6 +34,7 @@ public class FilesController {
         this.fileService = fileService;
     }
 
+    // Загрузка нового курса
     @PostMapping("/upload")
     public ResponseEntity<String> upload(@RequestParam("file") MultipartFile file) {
         try {
@@ -55,7 +56,7 @@ public class FilesController {
                     .body(String.format("Could not upload the file: %s!", file.getOriginalFilename()));
         }
     }
-
+    // Получение списка всех курсов
     @GetMapping("/list")
     public List<FileResponse> list() {
         return fileService.getAllFiles()
@@ -63,6 +64,7 @@ public class FilesController {
                 .map(this::mapToFileResponse)
                 .collect(Collectors.toList());
     }
+    // Получение списка курсов пользователя
     @GetMapping("/{id}/courses")
     public List<FileResponse> getMyCourses(@PathVariable Long id){
         List<Long> coursesId = userRepository.findCoursesByUserId(id);
@@ -75,7 +77,10 @@ public class FilesController {
                 courses.add(file);
             }
         }
-        return courses.stream().map(this::mapToFileResponse).collect(Collectors.toList());
+        return courses
+                .stream()
+                .map(this::mapToFileResponse)
+                .collect(Collectors.toList());
     }
 
     @GetMapping("/{id}/mycourses")

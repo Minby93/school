@@ -8,6 +8,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class MvcConfig implements WebMvcConfigurer {
 
+    // Добавление энд-поинтов для связи с html страницами
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/welcome").setViewName("welcome");
         registry.addViewController("/").setViewName("welcome");
@@ -17,6 +18,7 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addViewController("/registration").setViewName("registration");
         registry.addViewController("/courses").setViewName("courses");
     }
+    // Настройка ResorceHandler, установка пути до директории с файлами
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry
