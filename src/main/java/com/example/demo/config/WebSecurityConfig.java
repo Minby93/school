@@ -49,6 +49,7 @@ public class WebSecurityConfig {
                         .anyRequest().authenticated()
                 );
 
+
         return http.build();
     }
     @Bean

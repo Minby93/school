@@ -12,7 +12,12 @@ import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<User, Long> {
     List<User> findAll();
+
     Optional<User> findByUsername(String username);
+
     @Query(value = "select file_id from usr left join user_courses on usr.id = user_id where user_id = ?1", nativeQuery = true)
     List<Long> findCoursesByUserId(Long id);
+
+    @Query(value = "select id from files where user_id = ?1", nativeQuery = true)
+    List<Long> findMyCoursesByUserId(Long id);
 }
