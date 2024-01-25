@@ -57,14 +57,30 @@ async function getProfile(){
     let response = await fetch("/getProfile");
     let user = await response.json();
     let role ="";
+    let course = document.querySelector('.courseForm');
     if(user.role == "ADMIN")
     {
         role = "Админ";
+        course.innerHTML += `
+        <form enctype="multipart/form-data" method="post">
+                    <p>Загрузите ваши курсы: </p>
+                    <input type="file" name="course" id="courseFile" multiple>
+                    <button type="button" value="Отправить" id="courseButton">Отправить</button>
+                </form>
+        `;
     }
     else if(user.role == "TEACHER"){
         role = "Учитель";
+        course.innerHTML += `
+        <form enctype="multipart/form-data" method="post">
+                    <p>Загрузите ваши курсы: </p>
+                    <input type="file" name="course" id="courseFile" multiple>
+                    <button type="button" value="Отправить" id="courseButton">Отправить</button>
+                </form>
+        `;
     }
     else role = "Ученик";
+
     let list = document.querySelector('.myProfile');
         list.innerHTML += `
 

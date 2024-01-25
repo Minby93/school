@@ -2,6 +2,9 @@ package com.example.demo.domain;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name="\"user\"") // Использую аннотацию, чтобы записать таблицу с название user,
 // а так как прямо такое название не записать использую запись в виде \"user\"
@@ -16,6 +19,19 @@ public class User {
     private String phoneNumber;
     private String password;
     private String role;
+   /* @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "user_course",
+            joinColumns = @JoinColumn(name = "file_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"))
+    private Set<FileEntity> course = new HashSet<FileEntity>();
+
+    public Set<FileEntity> getCourse() {
+        return course;
+    }
+
+    public void setCourse(Set<FileEntity> course) {
+        this.course = course;
+    }*/
 
     public User(Long id, String firstName, String secondName, String email, String username, String phoneNumber, String password, String role) {
         this.id = id;
