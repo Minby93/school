@@ -1,4 +1,4 @@
-async function getMyCourses(){
+async function getMyCourses(){ // Динамическое отображение курсов в которых участвует пользователь в профиле
     let show = await fetch('/getProfile');
     let user = await show.json();
     let id = user.id;

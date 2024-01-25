@@ -1,3 +1,4 @@
+// Обработка авторизации
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 let showError = document.querySelector('.some_error');
