@@ -26,14 +26,6 @@ function registrationForm() {
         body: JSON.stringify({firstName: firstName, secondName: secondName, phoneNumber: phoneNumber,
                                 email: email, username: username, password: password, role: role})
     })
-    .then(response => response.json())
-    .then(data => {
-        // Получение ответа от бэка
-        console.log(data);
 
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
-
+     window.location.replace("/profile");
 }
